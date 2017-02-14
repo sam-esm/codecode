@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Share a post{% endblock %}
+
+{% block content %}
+<div class ="col-md-9">
+    {% if sent %}
+      <h1>E-mail successfully sent</h1>
+      <p>"{{ post.title }}" was successfully sent by e-mail.</p>
+    {% else %}
+      <h1> {{post.title}} را به وسیله ایمیل به اشتراک بگذارید!</h1>
+      <form action="." method="post">
+          {{ form|crispy}}
+          {% csrf_token %}
+          <input type="submit" value="Send e-mail">
+      </form>
+    {% endif %}
+{% endblock %}
